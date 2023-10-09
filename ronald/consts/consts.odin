@@ -1,0 +1,6 @@
+package consts
+
+MAX_DELAY :: 2048
+
+AUDIO_INPUTS  :: 1
+AUDIO_OUTPUTS :: 1
