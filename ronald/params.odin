@@ -86,7 +86,7 @@ params := ext.Plugin_Params{
         libc.strncpy(
             transmute([^]u8)out_buffer,
             strings.clone_to_cstring(out_str),
-            4
+            6
         )
         return true
     },
