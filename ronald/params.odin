@@ -7,15 +7,6 @@ import "clap"
 import "clap/ext"
 import "consts"
 
-str_u8_len :: proc (str: string, $len: int) -> [^]u8 {
-    str_u8 := transmute([]u8)str
-    out := [len]u8{}
-    for chr, i in str_u8 {
-        out[i] = chr
-    }
-    return raw_data(&out)
-}
-
 ParamDefine :: struct {
     name, path: string,
     vmin, vmax, vdef: f64,
