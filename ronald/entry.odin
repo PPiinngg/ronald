@@ -41,7 +41,7 @@ factory := clap.Plugin_Factory{
         
         p.host = host
         p.plugin.desc = &descriptor
-        p.plugin.plugin_data = &p
+        p.plugin.plugin_data = p
         p.plugin.init = init
         p.plugin.destroy = destroy
         p.plugin.activate = activate
@@ -53,11 +53,9 @@ factory := clap.Plugin_Factory{
         p.plugin.get_extension = get_extension
         p.plugin.on_main_thread = proc "c" (plugin: ^clap.Plugin) {}
 
-        p.delayline = delay.DelayLine{
-            r = 0,
-            w = 0,
-            buf = [consts.MAX_DELAY]f32{}
-        }
+        p.delayline = new(delay.DelayLine)
+
+        p.params = make_param_arr(define_params)
 
         return &p.plugin
     },

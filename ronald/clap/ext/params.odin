@@ -4,7 +4,7 @@ import clap "../../clap"
 
 EXT_PARAMS :: "clap.params"
 
-Param_Info_Flag :: enum u32{
+Param_Info_Flag :: enum u32 {
     STEPPED                 = 1 << 0,
     PERIODIC                = 1 << 1,
     HIDDEN                  = 1 << 2,
@@ -23,14 +23,14 @@ Param_Info_Flag :: enum u32{
     REQUIRES_PROCESS        = 1 << 15,
 }
 
-Param_Rescan_Flag :: enum u32{
+Param_Rescan_Flag :: enum u32 {
     VALUES = 1 << 0,
     TEXT   = 1 << 1,
     INFO   = 1 << 2,
     ALL    = 1 << 3,
 }
 
-Param_Clear_Flag :: enum u32{
+Param_Clear_Flag :: enum u32 {
    ALL         = 1 << 0,
    AUTOMATIONS = 1 << 1,
    MODULATIONS = 1 << 2,
@@ -41,8 +41,10 @@ Param_Info :: struct {
     flags:  u32,
     cookie: rawptr,
 
-    name:   [clap.NAME_SIZE]u8,
-    module: [clap.PATH_SIZE]u8,
+    // name:   [^]u8,
+    // module: [^]u8,
+    name:   cstring,
+    module: cstring,
 
     min_value:     f64,
     max_value:     f64,

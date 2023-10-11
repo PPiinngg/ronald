@@ -13,9 +13,11 @@ State :: struct {
     host_thread_check: ^ext.Host_Thread_Check,
     host_state:        ^ext.Host_State,
 
-    delayline: delay.DelayLine,
+    params: [dynamic]Parameter,
 
     latency: u32,
+    
+    delayline: ^delay.DelayLine,
 }
 
 init :: proc "c" (plugin: ^clap.Plugin) -> bool {
