@@ -7,8 +7,8 @@ import "consts"
 
 get_extension :: proc "c" (plugin: ^clap.Plugin, id: cstring) -> rawptr {
     switch id {
-        case ext.EXT_PARAMS:
-            return &params
+        // case ext.EXT_PARAMS:
+        //     return &params
         case ext.EXT_LATENCY:
             return &latency
         case ext.EXT_AUDIO_PORTS:

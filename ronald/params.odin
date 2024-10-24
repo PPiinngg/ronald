@@ -1,6 +1,6 @@
 package ronald
 
-import "core:runtime"
+import "base:runtime"
 import "core:strings"
 import "core:c/libc"
 import "clap"
@@ -54,20 +54,17 @@ params := ext.Plugin_Params{
         return u32(len(state.params))
     },
 
-
     get_info = proc "c" (plugin: ^clap.Plugin, param_index: u32, param_info: ^ext.Param_Info) -> bool {
         state := cast(^State)plugin.plugin_data
         param_info^ = state.params[param_index].info
         return true
     },
 
-
     get_value = proc "c" (plugin: ^clap.Plugin, param_id: clap.Clap_Id, out_value: ^f64) -> bool {
         state := cast(^State)plugin.plugin_data
         out_value^ = state.params[param_id].v
         return true
     },
-
 
     value_to_text = proc "c" (plugin: ^clap.Plugin, param_id: clap.Clap_Id, value: f64, out_buffer: cstring, out_buffer_capacity: u32) -> bool {
         context = runtime.default_context()
@@ -82,14 +79,12 @@ params := ext.Plugin_Params{
         return true
     },
 
-
     text_to_value = proc "c" (plugin: ^clap.Plugin, param_id: clap.Clap_Id, param_value_text: cstring, out_value: ^f64) -> bool {
         state := cast(^State)plugin.plugin_data
         end_ptr : [^]u8 = nil
         state.params[param_id].v = libc.strtod(param_value_text, &end_ptr)
         return true
     },
-
 
     flush = proc "c" (plugin: ^clap.Plugin, in_events: ^clap.Input_Events, out_events: ^clap.Output_Events) {
         // state := cast(^State)plugin.plugin_data

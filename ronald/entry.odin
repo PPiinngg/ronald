@@ -1,6 +1,6 @@
 package ronald
 
-import "core:runtime"
+import "base:runtime"
 import "clap"
 import "consts"
 import "dsp/delay"
